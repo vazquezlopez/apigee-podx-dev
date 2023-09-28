@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+  <Flows>
+    <Flow name="updatePet">
+      <Description>Update an existing pet</Description>
+      <Condition>request.verb = "PUT" and proxy.pathsuffix MatchesPath "/pet"</Condition>
+    </Flow>
+    <Flow name="addPet">
+      <Description>Add a new pet to the store</Description>
+      <Condition>request.verb = "POST" and proxy.pathsuffix MatchesPath "/pet"</Condition>
+    </Flow>
+    <Flow name="findPetsByStatus">
+      <Description>Finds Pets by status</Description>
+      <Condition>request.verb = "GET" and proxy.pathsuffix MatchesPath "/pet/findByStatus"</Condition>
+    </Flow>
+    <Flow name="findPetsByTags">
+      <Description>Finds Pets by tags</Description>
+      <Condition>request.verb = "GET" and proxy.pathsuffix MatchesPath "/pet/findByTags"</Condition>
+    </Flow>
+    <Flow name="getPetById">
+      <Description>Find pet by ID</Description>
+      <Condition>request.verb = "GET" and proxy.pathsuffix MatchesPath "/pet/*"</Condition>
+    </Flow>
+    <Flow name="updatePetWithForm">
+      <Description>Updates a pet in the store with form data</Description>
+      <Condition>request.verb = "POST" and proxy.pathsuffix MatchesPath "/pet/*"</Condition>
+    </Flow>
+    <Flow name="deletePet">
+      <Description>Deletes a pet</Description>
+      <Condition>request.verb = "DELETE" and proxy.pathsuffix MatchesPath "/pet/*"</Condition>
+    </Flow>
+    <Flow name="uploadFile">
+      <Description>uploads an image</Description>
+      <Condition>request.verb = "POST" and proxy.pathsuffix MatchesPath "/pet/*/uploadImage"</Condition>
+    </Flow>
+    <Flow name="getInventory">
+      <Description>Returns pet inventories by status</Description>
+      <Condition>request.verb = "GET" and proxy.pathsuffix MatchesPath "/store/inventory"</Condition>
+    </Flow>
+    <Flow name="placeOrder">
+      <Description>Place an order for a pet</Description>
+      <Condition>request.verb = "POST" and proxy.pathsuffix MatchesPath "/store/order"</Condition>
+    </Flow>
+    <Flow name="getOrderById">
+      <Description>Find purchase order by ID</Description>
+      <Condition>request.verb = "GET" and proxy.pathsuffix MatchesPath "/store/order/*"</Condition>
+    </Flow>
+    <Flow name="deleteOrder">
+      <Description>Delete purchase order by ID</Description>
+      <Condition>request.verb = "DELETE" and proxy.pathsuffix MatchesPath "/store/order/*"</Condition>
+    </Flow>
+    <Flow name="createUser">
+      <Description>Create user</Description>
+      <Condition>request.verb = "POST" and proxy.pathsuffix MatchesPath "/user"</Condition>
+    </Flow>
+    <Flow name="createUsersWithListInput">
+      <Description>Creates list of users with given input array</Description>
+      <Condition>request.verb = "POST" and proxy.pathsuffix MatchesPath "/user/createWithList"</Condition>
+    </Flow>
+    <Flow name="loginUser">
+      <Description>Logs user into the system</Description>
+      <Condition>request.verb = "GET" and proxy.pathsuffix MatchesPath "/user/login"</Condition>
+    </Flow>
+    <Flow name="logoutUser">
+      <Description>Logs out current logged in user session</Description>
+      <Condition>request.verb = "GET" and proxy.pathsuffix MatchesPath "/user/logout"</Condition>
+    </Flow>
+    <Flow name="getUserByName">
+      <Description>Get user by user name</Description>
+      <Condition>request.verb = "GET" and proxy.pathsuffix MatchesPath "/user/*"</Condition>
+    </Flow>
+    <Flow name="updateUser">
+      <Description>Update user</Description>
+      <Condition>request.verb = "PUT" and proxy.pathsuffix MatchesPath "/user/*"</Condition>
+    </Flow>
+    <Flow name="deleteUser">
+      <Description>Delete user</Description>
+      <Condition>request.verb = "DELETE" and proxy.pathsuffix MatchesPath "/user/*"</Condition>
+    </Flow>
+    <Flow name="unsupported_operation">
+      <Description>Unsupported operation</Description>
+      <Request>
+        <Step>
+          <Name>RF-unknown-operation</Name>
+        </Step>
+      </Request>
+    </Flow>
+  </Flows>
+  <HTTPProxyConnection>
+    <BasePath>/oas-proxy</BasePath>
+  </HTTPProxyConnection>
+  <RouteRule name="default">
+    <TargetEndpoint>default</TargetEndpoint>
+  </RouteRule>
+</ProxyEndpoint>
