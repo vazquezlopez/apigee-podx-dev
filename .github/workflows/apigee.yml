@@ -39,7 +39,7 @@ jobs:
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_POOL_ID }}
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
       - name: Create API bundle
-        run: zip -r proxy.zip apiproxy
+        run: zip -r proxy.zip AK-authentication-proxy/apiproxy
       - name: Set output
         id: val
         run: echo "output=${{ vars.APIGEE_ORG }}" >> $GITHUB_OUTPUT
