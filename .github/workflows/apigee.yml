@@ -38,8 +38,10 @@ jobs:
           activate_credentials_file: true
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_POOL_ID }}
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
-      - name: Access API bundle
+      - name: Move to API bundle
         run: cd src/main/apigee/apiproxies/AK-authentication-proxy/
+      - name: Access API bundle
+        run: ls 
       - name: Create ZIP file
         run: zip -r apiproxy.zip apiproxy
       - name: Set output
