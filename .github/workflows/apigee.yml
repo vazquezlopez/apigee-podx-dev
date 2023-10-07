@@ -43,7 +43,9 @@ jobs:
       - name: 'Use gcloud update'
         run: 'gcloud components update'
       - name: 'Use gcloud info'
-        run: 'gcloud info'
+        run: 'gcloud components list'
+      - name: 'Install beta'
+        run: 'gcloud components install beta'
       - name: Move to API bundle
         run: 'gcloud beta apigee archives deploy --environment=env-apigee-dev --labels=release=06102023 --organization=${{ vars.APIGEE_ORG }}'
       - name: Access API bundle
