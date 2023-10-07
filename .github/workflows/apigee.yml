@@ -40,10 +40,12 @@ jobs:
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
-      - name: 'Use gcloud CLI'
+      - name: 'Use gcloud update'
+        run: 'gcloud components update'
+      - name: 'Use gcloud info'
         run: 'gcloud info'
       - name: Move to API bundle
-        run: 'gcloud beta apigee archives deploy --environment=env-apigee-dev --labels=release=06102023 --organization=podx-apigee-instance  --quiet'
+        run: 'gcloud beta apigee archives deploy --environment=env-apigee-dev --labels=release=06102023 --organization=${{ vars.APIGEE_ORG }}'
       - name: Access API bundle
         run: ls 
       - name: Create ZIP file
