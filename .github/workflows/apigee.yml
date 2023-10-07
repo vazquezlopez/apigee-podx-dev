@@ -38,8 +38,10 @@ jobs:
           activate_credentials_file: true
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_POOL_ID }}
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
-      - name: Create API bundle
-        run: zip -r proxy.zip src/main/apigee/apiproxies/AK-authentication-proxy/apiproxy
+      - name: Access API bundle
+        run: cd src/main/apigee/apiproxies/AK-authentication-proxy/
+      - name: Create ZIP file
+        run: zip -r proxy.zip apiproxy
       - name: Set output
         id: val
         run: echo "output=${{ vars.APIGEE_ORG }}" >> $GITHUB_OUTPUT
