@@ -39,7 +39,7 @@ jobs:
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_POOL_ID }}
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
       - name: Move to API bundle
-        run: cd src/main/apigee/apiproxies/AK-authentication-proxy/
+        run: cd src
       - name: Access API bundle
         run: ls 
       - name: Create ZIP file
