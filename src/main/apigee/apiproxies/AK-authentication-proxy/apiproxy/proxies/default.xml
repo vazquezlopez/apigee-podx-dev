@@ -13,7 +13,7 @@
     </Request>
   </PreFlow>
   <HTTPProxyConnection>
-    <BasePath>verify-api-key</BasePath>
+    <BasePath>/verify-api-key</BasePath>
   </HTTPProxyConnection>
   <RouteRule name="default-route">
     <TargetEndpoint>default</TargetEndpoint>
