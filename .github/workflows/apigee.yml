@@ -47,18 +47,6 @@ jobs:
       - name: 'Install beta'
         run: 'gcloud components install beta'
       - name: Move to API bundle
-        run: 'gcloud beta apigee archives deploy --environment=env-apigee-dev --labels=release=06102023 --organization=${{ vars.APIGEE_ORG }}'
-      - name: Access API bundle
-        run: ls 
-      - name: Create ZIP file
-        run: zip -r apiproxy.zip apiproxy
-      - name: Set output
-        id: val
-        run: echo "output=${{ vars.APIGEE_ORG }}" >> $GITHUB_OUTPUT
+        run: 'gcloud beta apigee archives deploy --environment=env-apigee-dev --labels=release=06102023 --organization=${{ vars.APIGEE_ORG }}  >> $GITHUB_OUTPUT'
       - name: Print my output
         run: echo ${{steps.val.outputs.name}}
-      - name: Upload API Proxy Bundle
-        id: upload
-        run: "echo \"apigee-revision=$(curl -X POST -H \"Content-Type: multipart/form-data\" -H \"Authorization: Bearer ${{steps.auth.outputs.access_token}}\" -F \"file=@apiproxy.zip\" \"https://apigee.googleapis.com/v1/organizations/${{vars.APIGEE_ORG}}/apis?action=import&name=${{vars.APIGEE_PROXY_NAME}}\" --silent | jq --raw-output .revision)\" >> $GITHUB_OUTPUT"
-      - name: Deploy Revision
-        run: "curl \"https://apigee.googleapis.com/v1/organizations/${{ vars.APIGEE_ORG }}/environments/${{vars.APIGEE_ENV}}/apis/${{vars.APIGEE_PROXY_NAME}}/revisions/${{steps.upload.outputs.apigee-revision}}/deployments?override=true\" -X POST -H \"Authorization: Bearer ${{steps.auth.outputs.access_token}}\""
