@@ -43,7 +43,7 @@ jobs:
       - name: 'Use gcloud CLI'
         run: 'gcloud info'
       - name: Move to API bundle
-        run: 'gcloud beta apigee archives deploy --environment=env-apigee-dev --labels=release=06102023 --organization=podx-apigee-instance'
+        run: 'gcloud beta apigee archives deploy --environment=env-apigee-dev --labels=release=06102023 --organization=podx-apigee-instance  --quiet'
       - name: Access API bundle
         run: ls 
       - name: Create ZIP file
